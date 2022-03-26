@@ -56,11 +56,14 @@ java中有8种基本数据类型来存储数值、字符和布尔值。
     boolean
     
 ### 3.2.1 整数类型
+
+```text
        内存空间    取值范围
 byte    8位      -128 ~ 127                                      -(2**7) ~ (2**7)-1
 short   16位     -32768 ~ 32767                                  -(2**15) ~ (2**15)-1
 int     32位     -2147483648 ~ 2147483647                        -(2**31) ~ (2**31)-1
 long    64位     -9223372036854775808 ~ 9223372036854775807      -(2**63) ~ (2**63)-1
+```
 
 在定义4种类型的变量时，需要注意变量的取值范围，超出范围就会出错。
 
@@ -84,9 +87,12 @@ public class First{
 ```
 
 ### 3.2.2 浮点类型
+
+```text
        内存大小     取值范围
 float   32位     1.4E-45~3.4028235E38
 double  64位     4.9E-324~1.7976931348623157E308
+```
 
 默认情况下，小数都被看做double类型，若使用float型小数，则需要在小数后面必须添加F或f。
 
@@ -126,13 +132,13 @@ public class string {
 ```text
 \ddd    1~3位八进制数据所代表的字符，如\123
 \uxxx   4位十六进制数据所代表的字符，如\u0052
-\'      
-\\
-\t
-\n
-\r
-\b
-\f
+\'      单引号字符
+\\      反斜杠符号
+\t      垂直制表符，将光标移到下一个制表符的位置
+\n      换行
+\r      回车
+\b      退格
+\f      换页
 ```
 ```java
 package java_base;
@@ -177,6 +183,8 @@ public class bool {
 ### 3.3.1 标识符和关键字
 
 1. 标识符
+
+java规定的标识符由任意顺序的字母(a-zA-Z)，下划线(_)，美元符号($)和数字组成，并且第一个字符不能是数字。
 
 2. 关键字
 
@@ -282,7 +290,26 @@ public class arithmetic_arithmetic {
 ### 3.4.3 自增自减运算符
 自增自减运算符是单目运算符。
 ```java
+package java_base;
 
+public class Operator1 {
+    public static void main(String[] args) {
+        int a = 12;
+        a++;
+        System.out.println("a++后的值为:" + a); // 13
+
+        int b = 35;
+        System.out.println("b++的值为：" + b++); // 35
+        System.out.println("b++的值为：" + b); // 36
+
+        int c = 24;
+        ++c;
+        System.out.println("--c之后的值：" + c); // 25
+
+        int d = 19;
+        System.out.println("--d此时的值：" + ++d); // 20
+    }
+}
 ```
 
 ### 3.4.4 比较运算符
@@ -307,8 +334,41 @@ public class comparative_algorithm {
 
 ### 3.4.5 逻辑运算符
 
-```java
+返回类型为布尔值的表达式，如比较运算符，可以被组合在一起构成一个更复杂的表达式。
 
+逻辑运算符：
+```text
+运算符     含义      用法      结合方向
+& &&     逻辑与     op1&&op2   从左到右
+||       逻辑或     op1||op2   从左到右
+!        逻辑非     !op        从右到左
+```
+& 和 && 的区别：
+```text
+
+```
+
+```java
+package java_base;
+
+public class Operator2 {
+    public static void main(String[] args) {
+        int a = 2;
+        int b = 5;
+
+        boolean result1 = ((a > b) & (a != b));
+        boolean result2 = ((a > b) && (a != b));
+        boolean result3 = ((a > b) | (a != b));
+        boolean result4 = ((a > b) || (a != b));
+        boolean result5 = ((a > b) != (a != b));
+
+        System.out.println("result1：" + result1);
+        System.out.println("result1：" + result2);
+        System.out.println("result1：" + result3);
+        System.out.println("result1：" + result4);
+        System.out.println("result1：" + result5);
+    }
+}
 ```
 
 ### 3.4.6 位运算符
@@ -320,29 +380,91 @@ public class comparative_algorithm {
 ### 3.4.7 三元运算符
 三元运算符的使用格式：  条件式?值1：值2
 
-三元运算符的运算规则：若条件式的值为true，则整个表达式取 值1，否则取 值2
+三元运算符的运算规则：若条件式的值为true，则整个表达式取 **值1**，否则取 **值2**
 
 ```java
+package java_base;
 
+public class Operator3 {
+    public static void main(String[] args) {
+        boolean a;
+        if (20 < 45) {
+            a = true;
+        } else {
+            a = false;
+        }
+        System.out.println("a的值为：" + a);
+        
+        // 使用三元运算符
+        boolean b = 20 < 45 ? true : false;
+        System.out.println("b的值为：" + b);
+    }
+}
 ```
 
 ### 3.4.8 运算符优先级
 
+```text
+优先级              描述             运算符
+  1                括号               ()
+  2                正负号             +,-
+  3              一元运算符           ++, --, !       
+  4                乘除              *, /, %
+```
 
 ## 3.5 数据类型转换
 类型转换是将一个值从一种类型更改为另一种类型的过程。
 
-例如将String类型数据“458”转换成一个数值型。
+例如将String类型数据“458”转换成一个数值型，而且可以将任意类型的数据转换成String类型。
+
+如果`从低精度数据类型向高精度数据类型转换`，则永远不会溢出，并且总是成功的；
+而把`高精度的数据类型向低精度数据类型转换`，则必然会有信息丢失，有可能会失败。
 
 ### 3.5.1 隐式类型转换
-从低级类型向高级类型的转换，系统将自动执行，程序无需进行任何操作。
+从低级类型向高级类型的转换，系统将自动执行，程序员无需进行任何操作。
+
+精度从低到高：byte < short < int < long < float < double
+
+```java
+package java_base;
+
+public class number {
+    public static void main(String[] args) {
+        byte mybyte = 124;
+        int myint = 149;
+        float myfloat = 452.12f;
+        char mychar = 10;
+        double mydouble = 45.45456;
+
+        System.out.println("byte类型和float型数据进行运算：" + (mybyte + myfloat));
+        System.out.println("byte类型和int型数据进行运算：" + (mybyte + myint));
+        System.out.println("byte类型和char型数据进行运算：" + (mybyte + mychar));
+        System.out.println("byte类型和double型数据进行运算：" + (mybyte + mydouble));
+    }
+}
+```
 
 ### 3.5.2 显示类型转换
-当把高精度的变量的值赋给低精度的变量时，必须使用显示类型转换运算(又称为强制类型转换)
+当把高精度的变量的值赋给低精度的变量时，必须使用显示类型转换运算(又称为强制类型转换)：(类型名)要转换的值
+
+```java
+package java_base;
+
+public class number2 {
+    public static void main(String[] args) {
+        System.out.println((int) 45.23);
+        System.out.println((long) 456.5F);
+        System.out.println((int) 'd'); //100
+    }
+}
+```
+当执行显示类型转换时， 
 
 ## 3.6 代码注释与编码规范
 
 ### 3.6.1 代码注释
+//
 
+/**/
 
 ### 3.6.2 编码规范
