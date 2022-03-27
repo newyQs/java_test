@@ -271,18 +271,274 @@ public class string_split {
 ```
 
 ## 5.5 格式化字符串
+String类的静态format()方法用于创建格式化的字符串。
+
+(1) format(String format,Object...args)
+
+(2) format(Local l, String format, Object...args)
 
 ### 5.5.1 日期和时间字符串格式化
 
+(1) 日期格式化
+```java
+package String;
+
+import java.util.Date;
+
+public class format_date {
+    public static void main(String[] args) {
+        Date date = new Date();
+        // te 一个月中的某一天(1~31)
+        String te = String.format("%te", date);
+        System.out.println(te);
+        // tb 指定语言环境的月份简称
+        String tb= String.format("%tb", date);
+        System.out.println(tb);
+        // tB 指定语言环境的月份全称
+        String tB= String.format("%tB", date);
+        System.out.println(tB);
+        // ta 指定语言环境的星期几简称
+        String ta= String.format("%ta", date);
+        System.out.println(ta);
+        // tA 指定语言环境的星期几全称
+        String tA= String.format("%tA", date);
+        System.out.println(tA);
+        // tc 包括全部日期和时间信息
+        String tc= String.format("%tc", date);
+        System.out.println(tc);
+        // ty 2位年份
+        String ty= String.format("%ty", date);
+        System.out.println(ty);
+        // tY 4位年份
+        String tY= String.format("%tY", date);
+        System.out.println(tY);
+        // tj 一年中的第几天(001 ~ 366)
+        String tj= String.format("%tj", date);
+        System.out.println(tj);
+        // tm 月份
+        String tm= String.format("%tm", date);
+        System.out.println(tm);
+        // td 一个月中的第一天(01~31)
+        String td= String.format("%td", date);
+        System.out.println(td);
+    }
+}
+```
+
+(2) 时间格式化
+```java
+package String;
+
+import java.util.Date;
+
+public class format_time {
+    public static void main(String[] args) {
+        Date date = new Date();
+        // tH 2位数字的24时制的小时(00~23)
+        String tH = String.format("%tH", date);
+        System.out.println(tH);
+        // tI 2位数字的12时制的小时(01~12)
+        String tI = String.format("%tI", date);
+        System.out.println(tI);
+        // tk 2位数字的24时制的小时(0~23)
+        String tk = String.format("%tk", date);
+        System.out.println(tk);
+        // tl 2位数字的12时制的小时(1~12)
+        String tl = String.format("%tl", date);
+        System.out.println(tl);
+        // tM 2位数字的分钟(00~59)
+        String tM = String.format("%tM", date);
+        System.out.println(tM);
+        // tS 2位数字的秒数(00~60)
+        String tS = String.format("%tS", date);
+        System.out.println(tS);
+        // tL 3位数字的毫秒数(000~999)
+        String tL = String.format("%tL", date);
+        System.out.println(tL);
+        // tN 9位数字的微秒数(000000000~999999999)
+        String tN = String.format("%tN", date);
+        System.out.println(tN);
+        // tp 指定语言上午或下午标记
+        String tp = String.format("%tp", date);
+        System.out.println(tp);
+        // tz 相对于 GMT RFC 82格式的数字时区偏移量
+        String tz = String.format("%tz", date);
+        System.out.println(tz);
+        // tZ 时区缩写形式的字符串
+        String tZ = String.format("%tZ", date);
+        System.out.println(tZ);
+        // ts 1970-01-01 00:00:00 至现在经过的秒数
+        String ts = String.format("%ts", date);
+        System.out.println(ts);
+        // tQ 1970-01-01 00:00:00 至现在经过的毫秒数
+        String tQ = String.format("%tQ", date);
+        System.out.println(tQ);
+    }
+}
+```
+
+(3) 格式化常见的日期和时间组合
+```java
+package String;
+
+import java.util.Date;
+
+public class format_date_time {
+    public static void main(String[] args) {
+        Date date = new Date();
+        // tF “年-月-日” 格式(4位年份)
+        String tF = String.format("%tF", date);
+        System.out.println(tF);
+        // tD “月/日/年” 格式(2位年份)
+        String tD = String.format("%tD", date);
+        System.out.println(tD);
+        // tc 全部日期和时间信息
+        String tc = String.format("%tc", date);
+        System.out.println(tc);
+        // tr “时：分：秒” PM(AM) 格式(12时制)
+        String tr = String.format("%tr", date);
+        System.out.println(tr);
+        // tT “时：分：秒” 格式(24时制)
+        String tT = String.format("%tT", date);
+        System.out.println(tT);
+        // tT “时：分” 格式(24时制)
+        String tR = String.format("%tR", date);
+        System.out.println(tR);
+    }
+}
+```
 
 ### 5.5.2 常规类型格式化
 
+```java
+package String;
 
+import java.util.Date;
+
+public class format_regular {
+    public static void main(String[] args) {
+        // %b %B        结果被格式化称布尔类型
+        // %h %H                    散列码
+        // %s %S                    字符串
+        // %c %C                    字符
+        // %d                       十进制
+        // %o                       八进制
+        // %x %X                    十六进制
+        // %e                       科学计数法表示的十进制
+        // %a                       带有效数和指数十六进制浮点值
+        // %n                       行分隔符
+        // %%                       字面值%
+        String str = String.format("%d", 400 / 2);
+        System.out.println(str);
+    }
+}
+```
 
 ## 5.6 使用正则表达式
 
+```java
+package String;
 
+public class re {
+    public static void main(String[] args) {
+        /**
+         * 元字符：
+         * .
+         * \d
+         * \D
+         * \s
+         * \S
+         * \w
+         * \W
+         * \p{Lower}
+         * \p{Upper}
+         * \p{ASCII}
+         * \p{Alpha}
+         * \p{Digit}
+         * \p{Alnum}
+         * \p{Punct}
+         * \p{Graph}
+         * \p{Print}
+         * \p{Blank}
+         * \p{Cntrl}
+         *
+         * 限定修饰符：
+         * ?
+         * *
+         * +
+         * {n}
+         * {n,}
+         * {m,n}
+         * */
+        String regex = "\\w+@\\w+(\\.\\w{2,3})*\\.\\w{2,3}";
+        String s1 = "aaa@";
+        String s2 = "aaaaa";
+        String s3 = "1233@qq.com";
+        if (s1.matches(regex)) {
+            System.out.println("s1--true");
+        }
+        if (s2.matches(regex)) {
+            System.out.println("s2--true");
+        }
+        if (s3.matches(regex)) {
+            System.out.println("s3--true");
+        }
+    }
+}
+```
 
 ## 5.7 字符串生成器
+创建成功的字符串对象，其长度是固定的，内容不能被改变和编译。虽然使用+号可以达到附加新字符或字符串的目的，但+号会产生一个新的String实例，
+会在内存中创建新的字符串对象。如果重复的对字符串进行修改，将极大的增加系统开销。
 
+验证字符串操作和字符串生成器操作的效率：
+```java
+package String;
 
+public class string_iter {
+    public static void main(String[] args) {
+        String str = "";
+        long startTime = System.currentTimeMillis();
+        for (int i = 9; i < 1000; i++) {
+            str = str + i;
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("String消耗时间：" + (endTime - startTime));
+
+        StringBuilder builder = new StringBuilder("");
+        startTime = System.currentTimeMillis();
+        for (int j = 0; j < 1000; j++) {
+            builder.append(j);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("StringBuilder消耗时间：" + (endTime - startTime));
+    }
+}
+```
+新创建的StringBuilder对象初始容量是16个字符，可以自行指定初始长度。如果附加的字符超过可容纳的长度，则StringBuilder对象将自动增加长度以容纳被附加的字符。
+若要使用StringBuilder最后输出字符串结果，可以使用toString()方法。利用StringBuilder类中的方法可动态的执行添加、删除和插入等字符串的编辑操作。
+
+(1) append(value)
+
+(2) insert(start, end)
+
+(3) delete(index, value)
+
+```java
+package String;
+
+public class string_builder {
+    public static void main(String[] args) {
+        StringBuilder s = new StringBuilder("123");
+
+        s.append("456");
+        System.out.println(s);
+
+        s.delete(1, 3);
+        System.out.println(s);
+
+        s.insert(2, "abc");
+        System.out.println(s);
+    }
+}
+```
